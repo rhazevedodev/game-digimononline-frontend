@@ -1,31 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const primeiroAcessoURL = 'http://localhost:8080/usuarios/primeiroAcesso/';
+  const loginURL = 'http://localhost:8080/auth/login';
 
-    const primeiroAcessoURL = 'http://localhost:8080/usuarios/primeiroAcesso/';
+  document.getElementById('loginForm').addEventListener('submit', autenticarUsuario);
 
-    document.getElementById('loginForm').addEventListener('submit', verificarPrimeiroAcesso);
+  async function autenticarUsuario(event) {
+    event.preventDefault();
 
-    async function verificarPrimeiroAcesso() {
-      event.preventDefault();
-        try {
-          console.log('iniciado verificarPrimeiroAcesso')
-          const usuario = document.getElementById('username').value.trim();
-          const response = await fetch(primeiroAcessoURL+usuario);
-      
-          if (!response.ok) {
-            throw new Error(`Erro na requisição: ${response.status}`);
-          }
-      
-          const primeiroAcesso = await response.json();
-      
-          if (primeiroAcesso === true) {
-            console.log("É o primeiro acesso do usuário.");
-            // Aqui você pode chamar alguma função ou exibir um aviso
-          } else {
-            console.log("Usuário já acessou anteriormente.");
-          }
-        } catch (erro) {
-          console.error("Erro ao verificar primeiro acesso:", erro);
-        }
+    const usuario = document.getElementById('username').value.trim();
+    const senha = document.getElementById('password').value.trim();
+
+    try {
+      const response = await fetch(loginURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          usuario,
+          senha
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Erro na autenticação: ${response.status}`);
       }
 
+      const token = await response.text(); // Se o backend retornar texto, use isso
+
+      console.log("Token JWT recebido:", token);
+
+      localStorage.setItem("token", token);
+
+      const isPrimeiroAcesso = await verificarPrimeiroAcesso(usuario);
+
+      if (isPrimeiroAcesso) {
+        console.log("Redirecionando para página de criação de personagem...");
+        // window.location.href = "/criar-personagem.html";
+        Swal.fire({
+          icon: "success",
+          title: "Seja bem vindo!",
+          text: "Está na hora de escolher seu primeiro companheiro!",
+          confirmButtonText: "Beleza!"
+        });
+      } else {
+        console.log("Redirecionando para o lobby...");
+        // window.location.href = "/lobby.html";
+        Swal.fire({
+          icon: "success",
+          title: "Seja bem vindo de volta!",
+          text: "É um prazer recebê-lo de volta no mundo digital.",
+          confirmButtonText: "Beleza!"
+        });
+      }
+
+    } catch (erro) {
+      console.error("Erro ao autenticar usuário:", erro);
+    }
+  }
+
+  async function verificarPrimeiroAcesso(usuario) {
+    try {
+      console.log('Verificando primeiro acesso do usuário...');
+      const response = await fetch(primeiroAcessoURL + usuario);
+
+      if (!response.ok) {
+        throw new Error(`Erro na requisição: ${response.status}`);
+      }
+
+      const resposta = await response.json();
+      const isPrimeiroAcesso = resposta.mensagem === "Primeiro acesso confirmado";
+
+      return isPrimeiroAcesso;
+    } catch (erro) {
+      console.error("Erro ao verificar primeiro acesso:", erro);
+      return false;
+    }
+  }
 });
