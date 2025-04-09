@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuar Jornada</title>
+    <link rel="stylesheet" href="../css/continuarJornada.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+
+    <header class="header">
+        <h1>Continuar Jornada</h1>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </header>
+
+    <!-- Card de pontos digitais -->
+    <div class="container-pontos">
+        <div class="digital-points-card">
+            <p>Pontos Digitais: <span id="digitalPoints">0</span></p>
+        </div>
+        <div class="digimon-status-card">
+            <p>Digimons Ativos: <span id="digimonStatus">0/0</span></p>
+        </div>
+        <button id="escolherDigimonBtn" class="escolher-digimon-btn" style="display: none;" onclick="escolherNovoDigimon()">
+            Escolher Novo Digimon
+        </button>
+    </div>
+    
+
+    <div class="container">
+        <div class="cards-container" id="cardsContainer">
+            <!-- Cards will be inserted here -->
+        </div>
+    </div>
+    <script defer src="../js/validaToken.js"></script>
+    <script defer src="../js/continuarJornada.js"></script>
+    <script src="./scripts/botaoEscolherDigimon.js"></script>
+</body>
+
+</html>
