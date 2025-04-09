@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Cadastro realizado!",
             text: "Seu usuário foi criado com sucesso.",
             confirmButtonText: "Beleza!"
+          }).then(() => {
+            // Redireciona assim que o usuário clicar em "Beleza!"
+            window.location.href = "login.html";
           });
           form.reset();
         } else {

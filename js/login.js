@@ -42,6 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
           title: "Seja bem vindo!",
           text: "Está na hora de escolher seu primeiro companheiro!",
           confirmButtonText: "Beleza!"
+        }).then(() => {
+          // Redireciona assim que o usuário clicar em "Beleza!"
+          window.location.href = "selecaoDigimon.html";
         });
       } else {
         console.log("Redirecionando para o lobby...");
@@ -62,15 +65,23 @@ document.addEventListener('DOMContentLoaded', () => {
   async function verificarPrimeiroAcesso(usuario) {
     try {
       console.log('Verificando primeiro acesso do usuário...');
-      const response = await fetch(primeiroAcessoURL + usuario);
-
+      const token = localStorage.getItem("token"); // ou sessionStorage.getItem("token")
+      
+      const response = await fetch(primeiroAcessoURL + usuario, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`, // <-- Aqui vai o JWT
+          "Content-Type": "application/json"
+        }
+      });
+  
       if (!response.ok) {
         throw new Error(`Erro na requisição: ${response.status}`);
       }
-
+  
       const resposta = await response.json();
       const isPrimeiroAcesso = resposta.mensagem === "Primeiro acesso confirmado";
-
+  
       return isPrimeiroAcesso;
     } catch (erro) {
       console.error("Erro ao verificar primeiro acesso:", erro);
