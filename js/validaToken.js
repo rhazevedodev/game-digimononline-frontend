@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
           console.warn("Token inválido ou expirado:", response.status);
           // Redireciona ou remove o token, se necessário
           localStorage.removeItem("token");
-          return;
+          window.location.href = "login.html";
         }
   
         const resultado = await response.text();
