@@ -8,7 +8,7 @@ const digimons = [
     { id: 7, nome: "Tentomon", img: "../assets/digimons/rookies/tentomon.jpg", descricao: "Um Digimon inseto com uma carapaça resistente e inteligência avançada." }
 ];
 
-const apiURL = 'http://localhost:8080/api/selecaoDigimon/selecionar';
+const apiURL = 'http://localhost:8080/digimon/selecionar';
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -92,20 +92,20 @@ document.addEventListener("DOMContentLoaded", function () {
     
     async function efetivarEscolhaDigimon() {
         try {
-            const nomeUsuario = localStorage.getItem('usuario');
+            const jwtToken = localStorage.getItem('token');
             const nomeDigimon = localStorage.getItem('chosenDigimon');
             const apelidoDigimon = localStorage.getItem('nickname');
     
-            if (!nomeUsuario || !nomeDigimon || !apelidoDigimon) {
+            if (!jwtToken || !nomeDigimon || !apelidoDigimon) {
                 throw new Error("Dados do Digimon ou usuário não encontrados no localStorage.");
             }
     
-            const requestBody = { nomeUsuario, nomeDigimon, apelidoDigimon };
+            const requestBody = { jwtToken, nomeDigimon, apelidoDigimon };
             const requestOptions = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    // 'Authorization': `Bearer ${localStorage.getItem('token')}` // Caso use autenticação
+                    'Authorization': `Bearer ${localStorage.getItem('token')}` // Caso use autenticação
                 },
                 body: JSON.stringify(requestBody)
             };

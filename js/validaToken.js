@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Aqui você pode seguir com a lógica da aplicação
       } catch (error) {
         console.error("Erro ao validar o token:", error);
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
       }
     }
   
