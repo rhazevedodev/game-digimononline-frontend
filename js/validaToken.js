@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function validarToken(token) {
       if (!token) {
         console.warn("Usuario não autenticado.");
-        return;
+        window.location.href = "login.html";
       }
   
       try {
