@@ -1,0 +1,583 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    background-image: url('../imagens/areas/MasmorraTempestade.jpg');
+    /* Imagem pré-definida */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/*
+#caixa_informacoes {
+    border: 5px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    margin-left: 30px;
+}*/
+
+/* Estilos gerais da tabela */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    /*border-collapse: separate;*/
+    /*border-spacing: 0 10px;*/
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    /*border-collapse: separate;*/
+    /*border-spacing: 0 10px;*/
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para o cabeçalho da tabela */
+.table thead {
+    background-color: #4CAF50;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Estilo para as células */
+.table th,
+.table td {
+    padding: 15px;
+    text-align: left;
+    /*border-radius: 10px;*/
+    border: 1px solid #ddd;
+}
+
+/* Estilo para as linhas alternadas */
+.table tr:nth-child(even) {
+    /*background-color: #f4f4f4;*/
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Efeito de hover nas linhas */
+.table tr:hover {
+    background-color: #727070;
+    /* Cor suave ao passar o mouse */
+    transition: background-color 0.3s;
+}
+
+/* Melhorando a cor da borda ao foco */
+.table th:focus,
+.table td:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+    /* Foco com borda azul */
+}
+
+/* Melhorando a aparência das bordas */
+.table td,
+.table th {
+    border-left: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+}
+
+/* Adicionando um efeito de transição ao hover */
+.table tr:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#header {
+    width: 100%;
+    height: 10%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Topo-container com a imagem */
+#topo-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+    height: 250px;
+    /* Ajuste a altura conforme necessário */
+    background-image: url('../assets/bannerTopo.jpg');
+    /* Substitua pela imagem que deseja */
+    background-size: cover;
+    background-position: center;
+    border: #1a1a1a 5px solid;
+    /*border-radius: 50px;*/
+    margin-bottom: 30px;
+    /* Espaçamento entre topo-container e content-container */
+}
+
+#menu-container {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite quebrar a linha dos botões */
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 0;
+    margin-bottom: 20px;
+    margin-left: 10%;
+}
+
+/* Em telas grandes, esconda o botão de menu */
+#menu-toggle {
+    display: none;
+}
+
+/* Estilos do menu */
+.menu-item {
+    display: flexbox;
+    /* Tornar o link como um bloco inline (como um botão) */
+    padding: 10px 20px;
+    /* Espaçamento interno (como um botão) */
+    text-decoration: none;
+    /* Remover o sublinhado padrão */
+    color: white;
+    /* Cor do texto do botão */
+    background-color: #007bff;
+    /* Cor de fundo do botão */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    margin: 5px;
+    /* Espaço entre os botões */
+    width: 11%;
+    /* Fazer o botão ocupar toda a largura disponível */
+    box-sizing: border-box;
+    /* Para garantir que o padding seja respeitado no tamanho */
+    transition: background-color 0.3s, transform 0.2s;
+    /* Efeito de transição */
+    cursor: pointer;
+    /* Cursor de mãozinha para indicar interação */
+}
+
+/* Estilo quando o mouse passa sobre o botão */
+.menu-item:hover {
+    background-color: #0056b3;
+    /* Cor de fundo ao passar o mouse */
+    transform: scale(1.05);
+    /* Leve aumento do botão ao passar o mouse */
+}
+
+/* Estilo quando o botão é focado (ex: navegação com o teclado) */
+.menu-item:focus {
+    outline: none;
+    /* Remove o contorno padrão */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+    /* Contorno personalizado */
+}
+
+/* Estilo do botão quando ele está desabilitado */
+.menu-item:disabled {
+    background-color: #cccccc;
+    /* Cor de fundo para desabilitado */
+    cursor: not-allowed;
+    /* Cursor de 'não permitido' */
+}
+
+#left-container {
+    width: 18%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+}
+
+
+#content-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 90%;
+    /* Aumentando o conteúdo central para um pouco mais de espaço */
+    margin: auto;
+    background: rgba(0, 0, 0, 0.6);
+    /* Fundo com transparência para todo o container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    gap: 20px;
+    /* Aumentando o espaçamento entre os elementos para dar mais respiro */
+    height: 100%;
+}
+
+/* Lado esquerdo: imagem e barras */
+.image-section {
+    width: 12%;
+    /* A imagem agora ocupa apenas 12% da largura */
+    text-align: center;
+}
+
+.items-section {
+    width: 72%;
+    /* O restante (72%) é para os itens */
+    text-align: left;
+    padding-left: 20px;
+}
+
+/* Estilização da barra de vida */
+#life-bar-container {
+    width: 100%;
+    background-color: #ccc;
+    /* Cor do fundo da barra */
+    border: 1px solid #000;
+    /* Borda da barra */
+    border-radius: 5px;
+    height: 30px;
+    /* Altura da barra */
+    margin-top: 0px;
+    /* Espaçamento superior */
+    position: relative;
+    /* Necessário para posicionar o texto */
+    display: flex;
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+    margin-bottom: 2px;
+}
+
+/* Estilização da barra de vida */
+#life-bar {
+    height: 100%;
+    width: 0%;
+    /* Início com a largura 0, será ajustada via JavaScript */
+    background: linear-gradient(to right, #145A32, #28A745, #7DCEA0);
+    /* Cor da barra de vida */
+    border-radius: 5px;
+    transition: width 0.3s;
+    /* Animação para a mudança de largura */
+}
+
+/* Estilização do texto da barra de vida */
+#life-bar-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: white;
+    /* Cor do texto */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    /* Para destacar o texto */
+}
+
+/* Estilização da barra de energia */
+#energy-bar-container {
+    width: 100%;
+    background-color: #ccc;
+    /* Cor do fundo da barra */
+    border: 1px solid #000;
+    /* Borda da barra */
+    border-radius: 5px;
+    height: 30px;
+    /* Altura da barra */
+    margin-top: 0px;
+    /* Espaçamento superior */
+    position: relative;
+    /* Necessário para posicionar o texto */
+    display: flex;
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+}
+
+/* Estilização da barra de vida */
+#energy-bar {
+    height: 100%;
+    width: 0%;
+    /* Início com a largura 0, será ajustada via JavaScript */
+    background: linear-gradient(to right, #996B00, #FFC107, #FFF176);
+    /* Cor da barra de vida */
+    border-radius: 5px;
+    transition: width 0.3s;
+    /* Animação para a mudança de largura */
+}
+
+/* Estilização do texto da barra de vida */
+#energy-bar-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: white;
+    /* Cor do texto */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    /* Para destacar o texto */
+}
+
+.image-section img {
+    width: 100%;
+    height: auto;
+    /* Imagem ocupa toda a área disponível */
+    border-radius: 10px;
+    border: 5px solid #ccc;
+}
+
+/* Novo estilo da área de texto à direita com a caixa de fundo */
+.right-section-container {
+    width: 80%;
+    /* A área de texto à direita agora ocupa 80% da largura */
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    /* Fundo escuro e transparente */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    /* Sombras suaves */
+}
+
+.right-section {
+    text-align: left;
+    color: white;
+}
+
+.right-section h3 {
+    margin-top: 20px;
+    font-size: 1.6em;
+    color: #f4f4f4;
+    /* Cor mais suave para o título */
+    text-align: center;
+}
+
+.right-section p {
+    font-size: 1.2em;
+    color: #fff;
+    /* Cor mais suave para o texto */
+}
+
+#digimon-name-container {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    border: 2px solid #fff;
+}
+
+#estrelas-container {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 22px;
+    border: 2px solid #fff;
+}
+
+.estrela {
+    color: #ccc; /* Estrela desativada */
+    margin: 0 3px;
+}
+
+.estrela.ativa-1-5 {
+    color: gold; /* Cor para estrelas 1-5 */
+}
+
+.estrela.ativa-6-10 {
+    color: lightblue; /* Cor para estrelas 6-10 */
+}
+
+.estrela.ativa-11-15 {
+    color: lightgreen; /* Cor para estrelas 11-15 */
+}
+
+.estrela.ativa-16-20 {
+    color: rgb(243, 22, 22); /* Cor para estrelas 16-20 */
+}
+
+#digimon-name {
+    color: white;
+    font-size: 1.5em;
+    /* Ajuste o tamanho da fonte conforme necessário */
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    /* Sombra para destacar o nome */
+}
+
+#caixa-informacoes-esquerda {
+    position: relative;
+    width: 163px;
+    height: 150px;
+    border: 5px solid #ccc;
+    padding: px;
+    background-color: #f9f9f9;
+    margin-top: 5px;
+}
+
+#caixa-premium-fora {
+    position: relative;
+    border: 5px solid #ccc;
+    background-color: #000;
+    padding: px;
+    color: #f9f9f9;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.button-logout {
+    display: flexbox;
+    /* Tornar o link como um bloco inline (como um botão) */
+    padding: 10px 20px;
+    /* Espaçamento interno (como um botão) */
+    text-decoration: none;
+    /* Remover o sublinhado padrão */
+    color: white;
+    /* Cor do texto do botão */
+    background-color: #007bff;
+    /* Cor de fundo do botão */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    margin: 5px;
+    /* Espaço entre os botões */
+    box-sizing: border-box;
+    /* Para garantir que o padding seja respeitado no tamanho */
+    transition: background-color 0.3s, transform 0.2s;
+    /* Efeito de transição */
+    cursor: pointer;
+    /* Cursor de mãozinha para indicar interação */
+    margin-top: 2%;
+    width: 100%;
+}
+
+.button-logout:hover {
+    background-color: #0056b3;
+    /* Cor de fundo ao passar o mouse */
+}
+
+.button-modificar-atributos {
+    display: flexbox;
+    /* Tornar o link como um bloco inline (como um botão) */
+    padding: 10px 20px;
+    /* Espaçamento interno (como um botão) */
+    text-decoration: none;
+    /* Remover o sublinhado padrão */
+    color: white;
+    /* Cor do texto do botão */
+    background-color: #007bff;
+    /* Cor de fundo do botão */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    margin: 5px;
+    /* Espaço entre os botões */
+    box-sizing: border-box;
+    /* Para garantir que o padding seja respeitado no tamanho */
+    transition: background-color 0.3s, transform 0.2s;
+    /* Efeito de transição */
+    cursor: pointer;
+    /* Cursor de mãozinha para indicar interação */
+    margin-top: 2%;
+    width: 30%;
+    margin-left:34.5%;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.tab-button {
+    flex-grow: 1;
+    padding: 8px 15px;
+    border: none;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.tab-button.active {
+    background-color: #888;
+}
+
+.tab-content {
+    display: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Responsividade: ajuste para telas pequenas */
+@media screen and (max-width: 600px) {
+    .table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .table th, .table td {
+        padding: 8px 10px;
+    }
+}
+
+/* Ajustes de responsividade */
+@media (max-width: 768px) {
+    #topo-container {
+        width: 100%;
+        /* Aumenta a largura para dispositivos móveis */
+        height: 200px;
+        /* Menor altura em telas pequenas */
+        margin-bottom: 20px;
+        /* Menor espaçamento em telas pequenas */
+    }
+
+    #content-container {
+        width: 90%;
+        /* Ajuste do container para telas pequenas */
+        margin-top: 20px;
+    }
+
+    .image-section {
+        width: 30%;
+        /* Aumenta o tamanho da seção de imagem em telas menores */
+    }
+
+    .right-section-container {
+        width: 65%;
+        /* Ajuste o conteúdo à direita para ocupar mais espaço */
+    }
+
+    /* Esconder o menu-container em telas pequenas */
+    #menu-container {
+        display: none;
+        /* Escondendo inicialmente os botões */
+        flex-direction: column;
+        /* Colocando os botões em uma coluna */
+        width: 100%;
+    }
+
+    /* Botão para mostrar/esconder o menu */
+    #menu-toggle {
+        display: block;
+        background-color: #444;
+        color: white;
+        font-size: 1.5em;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    #menu-container.show {
+        display: flex;
+        /* Exibe o menu quando a classe "show" é adicionada */
+    }
+
+
+}

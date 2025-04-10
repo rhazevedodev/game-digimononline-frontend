@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../css/status.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Status - Novo</title>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <!-- Topo-container com imagem e espaçamento ajustado -->
+    <div id="topo-container"></div>
+
+    <!-- Botão para abrir/fechar o menu -->
+    <button id="menu-toggle">Menu</button>
+
+    <!-- Novo menu-container com botões -->
+    <div id="menu-container">
+        <a class="menu-item" href="status.html">Status</a>
+        <a class="menu-item" href="ranking.html">Ranking</a>
+        <a class="menu-item" href="digievolucao.html">Digievolução</a>
+        <a class="menu-item" href="../expedicao.html">Expedições</a>
+        <a class="menu-item" href="../missoes.html">Missões</a>
+        <a class="menu-item" href="invasao.html">Invasão</a>
+        <a class="menu-item" href="inventario.html">Inventario</a>
+        <a class="menu-item" href="premium.html">Premium</a>
+        <a class="menu-item" href="cacadas.html">Cacadas</a>
+        <a class="menu-item" href="quests.html">Quests</a>
+        <a class="menu-item" href="passeBatalha.html">Passe de Batalha</a>
+    </div>
+
+    <div id="content-container">
+        <div id="left-container">
+            <h3 class="titulo-caixa">Informações do Digimon</h3>
+            <hr class="separador">
+            <!-- Lado esquerdo com a imagem e as barras -->
+            <!--<img src="../imagens/imageNotFound.jpg" alt="Imagem do Digimon">-->
+            <div id="image-container"></div>
+
+            <!-- Container para o nome do Digimon -->
+            <div id="digimon-name-container">
+                <span id="digimon-name">Digimon</span>
+            </div>
+            <div id="digimon-name-container">
+                <span id="digimon-name">PDigitais: 10.953
+                </span>
+            </div>
+            
+            <div id="estrelas-container">
+                <span class="estrela" data-posicao="1">★</span>
+                <span class="estrela" data-posicao="2">★</span>
+                <span class="estrela" data-posicao="3">★</span>
+                <span class="estrela" data-posicao="4">★</span>
+                <span class="estrela" data-posicao="5">★</span>
+            </div>
+            
+            <div id="life-bar-container">
+                <div id="life-bar">
+                    <span id="life-bar-text">0/100</span>
+                </div>
+            </div>
+            <div id="energy-bar-container">
+                <div id="energy-bar">
+                    <span id="energy-bar-text">0/100</span>
+                </div>
+            </div>
+            <div id="caixa-premium-fora">
+                <h3 class="titulo-caixa">Premium</h3>
+                <hr class="separador">
+                <div id="caixa-premium-dentro">
+                    <p style="padding: 15px; text-align:center;">Sem Premium Ativo</p>
+                </div>
+            </div>
+            <!-- Botão de Logout -->
+            <div id="logout-container">
+                <button class="button-logout" id="logoutButton" onclick="retornarSelecaoDigimon()">
+                    Seleção Digimon
+                </button>
+            </div>
+            <!-- Botão de Logout -->
+            <div id="logout-container">
+                <button class="button-logout" id="logoutButton" onclick="logout()">
+                    Logout
+                </button>
+            </div>
+        </div>
+        <!-- Novo container para o lado direito com a caixa de fundo -->
+
+        <div class="right-section-container">
+            <div class="right-section">
+                <h3>Bem-vindo ao Digimon Revolution Online!</h3>
+                <p>Aqui, você encontrará diversas aventuras, batalhas e muito mais. Prepare-se para explorar o mundo dos
+                    Digimons e conquistar novos desafios!</p>
+                <p>Fique atento às atualizações e participe das novas funcionalidades que estarão chegando em breve.</p>
+            </div>
+            <hr>
+            <div class="right-section">
+                <h3>Informações!</h3>
+                <table class="table" border="0" cellspacing="0" cellpadding="0">
+                    <!--<thead>
+                        <tr>
+                            <th>Header 1</th>
+                            <th>Header 2</th>
+                            <th>Header 3</th>
+                        </tr>
+                    </thead>-->
+                    <tbody>
+                        <tr>
+                            <td width="150">No jogo desde:</td>
+                            <td colspan="2" id="jogo_desde"></td>
+                        </tr>
+                        <tr>
+                            <td>Indicacao:</td>
+                            <td colspan="2" id="indicacao"></td>
+                        </tr>
+                        <tr>
+                            <td>Bits:</td>
+                            <td colspan="2" id="reserva_bits"></td>
+                        </tr>
+                        <tr>
+                            <td>Diamantes:</td>
+                            <td colspan="2" id="reserva_diamantes"></td>
+                        </tr>
+                        <tr>
+                            <td>Apelido Digimon:</td>
+                            <td colspan="2" id="apelido_digimon"></td>
+                        </tr>
+                        <tr>
+                            <td>Digimon Estagio 1:</td>
+                            <td colspan="2" id="digimon_estagio_1"></td>
+                        </tr>
+                        <tr>
+                            <td>Digimon Estagio 2:</td>
+                            <td colspan="2" id="digimon_estagio_2"></td>
+                        </tr>
+                        <tr>
+                            <td>Digimon Estagio 3:</td>
+                            <td colspan="2" id="digimon_estagio_3"></td>
+                        </tr>
+                        <tr>
+                            <td>Digimon Estagio 4:</td>
+                            <td colspan="2" id="digimon_estagio_4"></td>
+                        </tr>
+                        <tr>
+                            <td>Nível:</td>
+                            <td colspan="2" id="nivel"></td>
+                        </tr>
+                        <tr>
+                            <td>Experiência:</td>
+                            <td colspan="2" id="experiencia"></td>
+                        </tr>
+                        <tr>
+                            <td>Bônus Experiência:</td>
+                            <td colspan="2" id="bonus_experiencia"> </td>
+                        </tr>
+                        <tr>
+                            <td>Bônus Bits:</td>
+                            <td colspan="2" id="bonus_bits"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            <div class="right-section">
+                <h3>Atributos!</h3>
+                <p>Aqui, você encontrará diversas aventuras, batalhas e muito mais. Prepare-se para explorar o mundo dos
+                    Digimons e conquistar novos desafios!</p>
+                <p>Fique atento às atualizações e participe das novas funcionalidades que estarão chegando em breve.</p>
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="total">Total</button>
+                    <button class="tab-button" data-tab="base">Base</button>
+                    <button class="tab-button" data-tab="manipulaveis">Manipuláveis</button>
+                    <button class="tab-button" data-tab="modificadores">Modificadores</button>
+                    <button class="tab-button" data-tab="elementos">Elementos</button>
+                </div>
+
+                <div class="tab-content active" id="total">
+                    <table class="table">
+                        <tr>
+                            <td style="width: 12%;">Força:</td>
+                            <td id="forca-total" style="text-align: right;">0</td>
+                        </tr>
+                        <tr>
+                            <td>Inteligência:</td>
+                            <td id="inteligencia-total" style="text-align: right;">0</td>
+                        </tr>
+                        <tr>
+                            <td>Agilidade:</td>
+                            <td id="agilidade-total" style="text-align: right;">0</td>
+                        </tr>
+                        <tr>
+                            <td>Conhecimento:</td>
+                            <td id="conhecimento-total" style="text-align: right;">0</td>
+                        </tr>
+                        <tr>
+                            <td>Resistência:</td>
+                            <td id="resistencia-total" style="text-align: right;">0</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tab-content" id="base">
+                    <table class="table">
+                        <tr>
+                            <td style="width: 12%;">Força:</td>
+                            <td id="forca-base" style="text-align: right;">0</td>
+                        </tr>
+                        <tr>
+                            <td>Inteligência:</td>
+                            <td id="inteligencia-base" style="text-align: right;">0</td>
+                        </tr>
+                        <tr>
+                            <td>Agilidade:</td>
+                            <td id="agilidade-base" style="text-align: right;">0</td>
+                        </tr>
+                        <tr>
+                            <td>Conhecimento:</td>
+                            <td id="conhecimento-base" style="text-align: right;">0</td>
+                        </tr>
+                        <tr>
+                            <td>Resistência:</td>
+                            <td id="resistencia-base" style="text-align: right;">0</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tab-content" id="manipulaveis">
+                    <table class="table">
+                        <tr>
+                            <td style="width: 12%;">Força:</td>
+                            <td style="text-align: right;"><span id="forca-manipulavel">0</span></td>
+                        </tr>
+                        <tr>
+                            <td>Inteligencia:</td>
+                            <td style="text-align: right;"><span id="inteligencia-manipulavel">0</span></td>
+                        </tr>
+                        <tr>
+                            <td>Agilidade:</td>
+                            <td style="text-align: right;"><span id="agilidade-manipulavel">0</span></td>
+                        </tr>
+                        <tr>
+                            <td>Conhecimento:</td>
+                            <td style="text-align: right;"><span id="conhecimento-manipulavel">0</span></td>
+                        </tr>
+                        <tr>
+                            <td>Resistência:</td>
+                            <td style="text-align: right;"><span id="resistencia-manipulavel">0</span></td>
+                        </tr>
+                    </table>
+                    <button class="button-modificar-atributos" id="botaoTreinar"">
+                        Modificar Atributos
+                    </button>
+                </div>
+
+                <div class="tab-content" id="modificadores">
+                    <table class="table">
+                        <tr>
+                            <td style="width: 12%;">Força:</td>
+                            <td id="forca-modificadores" style="text-align: right;">0</td>
+                        </tr>
+                        <tr>
+                            <td>Inteligência:</td>
+                            <td id="inteligencia-modificadores" style="text-align: right;">0</td>
+                        </tr>
+                        <tr>
+                            <td>Agilidade:</td>
+                            <td id="agilidade-modificadores" style="text-align: right;">0</td>
+                        </tr>
+                        <tr>
+                            <td>Conhecimento:</td>
+                            <td id="conhecimento-modificadores" style="text-align: right;">0</td>
+                        </tr>
+                        <tr>
+                            <td>Resistência:</td>
+                            <td id="resistencia-modificadores" style="text-align: right;">0</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tab-content" id="elementos">
+                    <table class="table">
+                        <tr>
+                            <td style="width: 13%;">Elemento Fogo:</td>
+                            <td style="text-align: right;">1.050</td>
+                        </tr>
+                        <tr>
+                            <td>Elemento Água:</td>
+                            <td style="text-align: right;">1.050</td>
+                        </tr>
+                        <tr>
+                            <td>Elemento Planta:</td>
+                            <td style="text-align: right;">2.090</td>
+                        </tr>
+                        <tr>
+                            <td>Elemento Terra:</td>
+                            <td style="text-align: right;">1.050</td>
+                        </tr>
+                        <tr>
+                            <td>Elemento Gelo:</td>
+                            <td style="text-align: right;">1.645</td>
+                        </tr>
+                        <tr>
+                            <td>Elemento Veneno:</td>
+                            <td style="text-align: right;">5.849</td>
+                        </tr>
+                        <tr>
+                            <td>Elemento Trevas:</td>
+                            <td style="text-align: right;">2.332</td>
+                        </tr>
+                        <tr>
+                            <td>Elemento Luz:</td>
+                            <td style="text-align: right;">8.649</td>
+                        </tr>
+                        <tr>
+                            <td>Elemento Fantasma:</td>
+                            <td style="text-align: right;">5.600</td>
+                        </tr>
+                        <tr>
+                            <td>Elemento Metal:</td>
+                            <td style="text-align: right;">2.300</td>
+                        </tr>
+                        <tr>
+                            <td>Elemento Dragão:</td>
+                            <td style="text-align: right;">4.400</td>
+                        </tr>
+                        <tr>
+                            <td>Elemento Morte:</td>
+                            <td style="text-align: right;">5.690</td>
+                        </tr>
+                        <tr>
+                            <td>Elemento Espírito:</td>
+                            <td style="text-align: right;">1.000</td>
+                        </tr>
+                    </table>
+                    <button class="button-modificar-atributos" id="logoutButton" onclick="logout()">
+                        Obter Elementos
+                    </button>
+                </div>
+            </div>
+            <hr>
+            <div class="right-section">
+                <h3>Estatísticas!</h3>
+                <p>Aqui, você encontrará diversas aventuras, batalhas e muito mais. Prepare-se para explorar o mundo dos
+                    Digimons e conquistar novos desafios!</p>
+                <p>Fique atento às atualizações e participe das novas funcionalidades que estarão chegando em breve.</p>
+               
+            </div>
+        </div>
+    </div>
+    <script defer src="../js/validaToken.js"></script>
+    <script defer src="../js/carregarImagemLateral.js"></script>
+    <script defer src="./scripts/carregarLifeEnergyBar2.js"></script>
+    <script defer src="./scripts/carregarPremium2.js"></script>
+    <script defer src="./scripts/status_scripts.js"></script>
+    <script src="./scripts/botaoLogout.js"></script>
+    <script src="./scripts/botaoSelecaoDigimon.js"></script>
+    <script>
+        // Seleciona o botão de toggle e o container do menu
+        const menuToggle = document.getElementById("menu-toggle");
+        const menuContainer = document.getElementById("menu-container");
+
+        // Função para alternar a classe 'show' que controla a exibição do menu
+        menuToggle.addEventListener("click", function () {
+            menuContainer.classList.toggle("show");
+        });
+
+        // Seleciona todos os botões do menu
+        const menuItems = document.querySelectorAll(".menu-item");
+
+        // Adiciona um evento de click para cada item do menu
+        menuItems.forEach(item => {
+            item.addEventListener("click", function () {
+                // Obtém o link da página a partir do atributo 'data-link'
+                const pageLink = item.getAttribute("data-link");
+
+                // Redireciona para a página desejada
+                window.location.href = pageLink;
+            });
+        });
+
+        // Alternância entre abas
+        document.querySelectorAll(".tab-button").forEach(button => {
+            button.addEventListener("click", function () {
+                let tab = this.getAttribute("data-tab");
+
+                // Remove a classe 'active' de todas as abas e botões
+                document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
+                document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
+
+                // Ativa a aba clicada
+                this.classList.add("active");
+                document.getElementById(tab).classList.add("active");
+            });
+        });
+       
+    </script>
+</body>
+
+</html>
