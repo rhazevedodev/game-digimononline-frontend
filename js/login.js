@@ -23,7 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (!response.ok) {
-        throw new Error(`Erro na autenticação: ${response.status}`);
+        const errorBody = await response.json(); // captura o JSON de erro retornado
+        const errorMessage = errorBody.message || `Erro na autenticação: ${response.status}`;
+      
+        Swal.fire({
+          icon: "error",
+          title: "Erro ao entrar",
+          text: errorMessage,
+          confirmButtonText: "Ok"
+        });
+      
+        throw new Error(errorMessage);
       }
 
       const token = await response.text(); // Se o backend retornar texto, use isso
