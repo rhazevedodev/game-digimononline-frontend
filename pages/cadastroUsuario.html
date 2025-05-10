@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>>Cadastro - Digimon Revolution Online</title>
+    <title>Cadastro - Digimon Revolution Online</title>
     <link href="../css/cadastroUsuario.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -29,10 +29,16 @@
             <input type="password" id="confirmarSenha" name="confirmarSenha" required />
 
             <button type="submit">Cadastrar</button>
+            <button onclick="voltarParaLogin()">Voltar</button>
         </form>
     </div>
 
     <script src="../js/cadastroUsuario.js"></script>
+    <script>
+        function voltarParaLogin() {
+            window.location.href = "login.html"; // Altere para o nome real do seu arquivo de login, se for diferente
+        }
+    </script>
 </body>
 
 </html>

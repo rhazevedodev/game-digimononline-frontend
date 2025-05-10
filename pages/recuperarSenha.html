@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Recuperar Senha</title>
+    <link href="../css/recuperarSenha.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+    <div class="caixa-recuperacao">
+        <h2>Recuperar Senha</h2>
+        <input type="email" id="email" placeholder="Digite seu e-mail" required />
+        <button onclick="enviarRecuperacao()">Recuperar</button>
+        <button onclick="voltarParaLogin()">Voltar</button>
+    </div>
+
+    <script>
+        function voltarParaLogin() {
+            window.location.href = "login.html"; // Altere para o nome real do seu arquivo de login, se for diferente
+        }
+        async function enviarRecuperacao() {
+            const email = document.getElementById('email').value.trim();
+
+            if (!email) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Campo obrigatório',
+                    text: 'Por favor, insira seu e-mail.',
+                });
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:8080/auth/recuperar-senha', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                if (!response.ok) {
+                    const erro = await response.json();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro ao solicitar recuperação',
+                        text: erro.message || 'Erro desconhecido.',
+                    });
+                    return;
+                }
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'E-mail enviado!',
+                    text: 'Verifique sua caixa de entrada para redefinir sua senha.',
+                });
+
+            } catch (erro) {
+                console.error("Erro ao solicitar recuperação:", erro);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro inesperado',
+                    text: 'Tente novamente mais tarde.',
+                });
+            }
+        }
+    </script>
+
+</body>
+
+</html>
