@@ -10,7 +10,6 @@ const digimons = [
 
 const apiURL = 'http://localhost:8080/digimon/selecionar';
 
-
 document.addEventListener("DOMContentLoaded", function () {
 
     //validarSlotsDigimon(); // Chama a função ao carregar a página
