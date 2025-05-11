@@ -66,9 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     window.location.href = 'continuarJornada.html';
                 }, 2000); // 2000 milissegundos (2 segundos)
             }
-        } else {
-            showCustomAlert('Por favor, insira um apelido para seu Digimon.');
-            return;
         }
     });
 
@@ -111,19 +108,13 @@ document.addEventListener("DOMContentLoaded", function () {
             };
     
             const response = await fetch(apiURL, requestOptions);
-            const responseData = await response.json(); // Converte a resposta para JSON
-    
-            if (!response.ok) {
-                // Captura a mensagem de erro vinda do backend
-                const errorMessage = responseData.errorMessage || `Erro na rede, status: ${response.status}`;
-                throw new Error(errorMessage);
+            if(response.status == 409){
+                console.log("conflito");
+                displayError("Erro inesperado","Apelido já foi escolhido para outro digimon!")
+           } else {
+                return true;
             }
-    
-            // Cadastro bem-sucedido
-    
-            /*console.log("DIGIMON CADASTRADO COM SUCESSO");*/
 
-            return true;
 
         } catch (error) {
             // Exibe a mensagem de erro na tela
