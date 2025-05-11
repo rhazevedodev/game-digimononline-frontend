@@ -45,8 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const isPrimeiroAcesso = await verificarPrimeiroAcesso(usuario);
 
       if (isPrimeiroAcesso) {
-        console.log("Redirecionando para página de criação de personagem...");
-        // window.location.href = "/criar-personagem.html";
         Swal.fire({
           icon: "success",
           title: "Seja bem vindo!",
@@ -57,13 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
           window.location.href = "selecaoDigimon.html";
         });
       } else {
-        console.log("Redirecionando para o lobby...");
-        // window.location.href = "/lobby.html";
         Swal.fire({
           icon: "success",
           title: "Seja bem vindo de volta!",
           text: "É um prazer recebê-lo de volta no mundo digital.",
           confirmButtonText: "Beleza!"
+        }).then(() => {
+          // Redireciona assim que o usuário clicar em "Beleza!"
+          window.location.href = "continuarJornada.html";
         });
       }
 
