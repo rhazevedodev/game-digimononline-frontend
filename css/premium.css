@@ -1,0 +1,58 @@
+
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+h2  {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.right-section-container {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.beneficios ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.beneficios li {
+    background-color: #0f3460;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.planos {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.plano-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width:20%;
+}
+
+.plano-btn:hover {
+    background-color: #0056b3;
+}
+
+#qr-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
