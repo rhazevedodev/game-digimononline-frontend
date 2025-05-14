@@ -24,12 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!response.ok) {
         const errorBody = await response.json(); // captura o JSON de erro retornado
-        const errorMessage = errorBody.message || `Erro na autenticação: ${response.status}`;
+        console.log(errorBody);
       
         Swal.fire({
           icon: "error",
-          title: "Erro ao entrar",
-          text: errorMessage,
+          title: "Erro inesperado!",
+          text: errorBody.mensagem,
           confirmButtonText: "Ok"
         });
       
