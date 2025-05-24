@@ -18,83 +18,18 @@
       <div class="card" id="digitama-card">
         <img id="digitama-img" src="" alt="Digitama">
         <h2 id="digitama-name"></h2>
-        <button onclick="selecionarDigitama()">Selecionar</button>
+        <button id="btn-selecionar">Selecionar</button>
       </div>
     </div>
 
     <div class="nav-buttons">
-      <button onclick="anterior()">◀ Anterior</button>
-      <button onclick="proximo()">Próximo ▶</button>
+      <button id="btn-anterior">◀ Anterior</button>
+      <button id="btn-proximo">Próximo ▶</button>
     </div>
   </div>
 
   <script defer src="../js/validaToken.js"></script>
-  <script>
-
-    const token = localStorage.getItem("token"); // ou sessionStorage.getItem("token")
-    const digitamasAntigo = [
-      { name: "Digitama 1", image: "../assets/digimons/digitama/digitama1.jpg" },
-      { name: "Digitama 2", image: "../assets/digimons/digitama/digitama2.jpeg" },
-      { name: "Digitama 3", image: "../assets/digimons/digitama/digitama3.jpeg" },
-      { name: "Digitama 4", image: "../assets/digimons/digitama/digitama4.jpeg" },
-      { name: "Digitama 5", image: "../assets/digimons/digitama/digitama5.jpeg" }
-    ];
-
-    let digitamas = [];
-    let atual = 0;
-
-    async function carregarDigitamas() {
-      try {
-        const response = await fetch('http://localhost:8080/digimon/carregarDigitamas', {
-          method: 'GET', // Método da requisição
-          headers: {
-            'Content-Type': "application/json", // Define o tipo de conteúdo
-            'Authorization': `Bearer ${token}`, // Substitua pelo token real, se necessário
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('Erro ao carregar os digitamas');
-        }
-
-        const data = await response.json();
-        digitamas = data.digitamas;
-        console.log("teste de retorno: " + digitamas)
-        atualizarCard();
-      } catch (error) {
-        console.error(error);
-        alert('Não foi possível carregar os digitamas. Tente novamente mais tarde.');
-      }
-    }
-
-    function atualizarCard() {
-      if (digitamas.length === 0) return; // Garante que só atualiza se houver dados
-      const digitama = digitamas[atual];
-      document.getElementById("digitama-img").src = digitama.image;
-      document.getElementById("digitama-img").alt = digitama.nome; // Atualiza com o campo "nome"
-      document.getElementById("digitama-name").innerText = digitama.nome; // Atualiza com o campo "nome"
-    }
-
-    function proximo() {
-      if (digitamas.length === 0) return;
-      atual = (atual + 1) % digitamas.length;
-      atualizarCard();
-    }
-
-    function anterior() {
-      if (digitamas.length === 0) return;
-      atual = (atual - 1 + digitamas.length) % digitamas.length;
-      atualizarCard();
-    }
-
-    function selecionarDigitama() {
-      if (digitamas.length === 0) return;
-      const escolhida = digitamas[atual];
-      alert(`Você escolheu: ${escolhida.nome}\nID: ${escolhida.idValue}\nPossíveis Bebês: ${escolhida.possibleBaby1.join(', ')}`);    }
-
-    // Inicializa com a primeira digitama
-    carregarDigitamas();
-  </script>
+  <script defer src="../js/selecaoDigitama.js"></script>
 
 </body>
 
