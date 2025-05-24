@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Chocar Digitama</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6ecf0;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .egg-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      cursor: pointer;
+    }
+
+    .egg {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.2s ease-in-out;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .shake-left {
+      transform: rotate(-10deg);
+    }
+
+    .shake-right {
+      transform: rotate(10deg);
+    }
+
+    .revealed {
+      width: 220px;
+      animation: fadeIn 0.6s ease-in-out;
+      display: block;
+      margin: 0 auto;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    #status {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #444;
+    }
+
+    #continueBtn {
+      margin-top: 25px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: none;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    #continueBtn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Chocar sua Digitama</h1>
+
+  <div class="egg-container" onclick="chocarDigitama()">
+    <img id="eggImage" class="egg" src="../assets/digimons/digitama/digitama5.jpeg" alt="Digitama">
+  </div>
+
+  <h2 id="status"></h2>
+
+  <button id="continueBtn" onclick="continuar()">Continuar</button>
+
+  <script>
+    const digitamaSelecionada = "Digitama 5"; // Simulação da seleção anterior
+
+    const digitamaData = {
+      "Digitama 1": ["Botamon", "Punimon"],
+      "Digitama 2": ["Yuramon", "Pichimon"],
+      "Digitama 3": ["Pabumon", "Poyomon"],
+      "Digitama 4": ["Poyomon", "Yuramon"],
+      "Digitama 5": ["Botamon", "Punimon", "Yuramon", "Pabumon", "Pichimon", "Poyomon"]
+    };
+
+    const baby1Images = {
+      "Botamon": "../assets/digimons/baby1/botamon.jpg",
+      "Punimon": "../assets/digimons/baby1/punimon.jpg",
+      "Yuramon": "../assets/digimons/baby1/yuramon.jpg",
+      "Pabumon": "../assets/digimons/baby1/pabumon.jpg",
+      "Pichimon": "../assets/digimons/baby1/pichimon.jpg",
+      "Poyomon": "../assets/digimons/baby1/poyomon.jpg"
+    };
+
+    let clickCount = 0;
+    const maxClicks = 5;
+    const eggImage = document.getElementById("eggImage");
+    const statusText = document.getElementById("status");
+    const continueBtn = document.getElementById("continueBtn");
+    let shakeDirection = true;
+
+    function chocarDigitama() {
+      if (clickCount >= maxClicks) return;
+
+      eggImage.classList.remove("shake-left", "shake-right");
+      eggImage.classList.add(shakeDirection ? "shake-left" : "shake-right");
+      shakeDirection = !shakeDirection;
+
+      setTimeout(() => {
+        eggImage.classList.remove("shake-left", "shake-right");
+      }, 150);
+
+      clickCount++;
+
+      if (clickCount >= maxClicks) {
+        const opcoes = digitamaData[digitamaSelecionada];
+        const escolhido = opcoes[Math.floor(Math.random() * opcoes.length)];
+        const imagemFinal = baby1Images[escolhido];
+
+        setTimeout(() => {
+          eggImage.className = "revealed";
+          eggImage.src = imagemFinal;
+          eggImage.alt = escolhido;
+          statusText.textContent = `Nasceu: ${escolhido}!`;
+          continueBtn.style.display = "inline-block";
+
+          // Ex: salvar no localStorage se quiser
+          // localStorage.setItem("digimon_nascido", escolhido);
+        }, 300);
+      }
+    }
+
+    function continuar() {
+      // Exemplo: redirecionar para próxima etapa
+      // window.location.href = "tela-digimon.html";
+      alert("Indo para a próxima etapa...");
+    }
+  </script>
+
+</body>
+</html>

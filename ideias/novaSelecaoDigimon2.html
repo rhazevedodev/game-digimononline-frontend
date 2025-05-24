@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Escolha sua Digitama</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-top: 20px;
+      color: #333;
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 300px;
+      height: 400px;
+      margin-top: 20px;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: contain;
+      background: #f9f9f9;
+    }
+
+    .card h2 {
+      font-size: 1.2em;
+      color: #444;
+      margin: 15px 0 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #4338ca;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 300px;
+      margin-top: 15px;
+    }
+
+    .nav-buttons button {
+      width: 45%;
+      background-color: #e0e0e0;
+      color: #333;
+    }
+
+    .nav-buttons button:hover {
+      background-color: #d4d4d4;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Escolha sua Digitama</h1>
+
+  <div class="carousel-container">
+    <div class="card" id="digitama-card">
+      <img id="digitama-img" src="" alt="Digitama">
+      <h2 id="digitama-name"></h2>
+      <button onclick="selecionarDigitama()">Selecionar</button>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <button onclick="anterior()">◀ Anterior</button>
+    <button onclick="proximo()">Próximo ▶</button>
+  </div>
+
+  <script>
+    const digitamas = [
+      {
+        name: "Digitama 1",
+        image: "../assets/digimons/digitama/digitama1.jpg"
+      },
+      {
+        name: "Digitama 2",
+        image: "../assets/digimons/digitama/digitama2.jpeg"
+      },
+      {
+        name: "Digitama 3",
+        image: "../assets/digimons/digitama/digitama3.jpeg"
+      },
+      {
+        name: "Digitama 4",
+        image: "../assets/digimons/digitama/digitama4.jpeg"
+      },
+      {
+        name: "Digitama 5",
+        image: "../assets/digimons/digitama/digitama5.jpeg"
+      }
+    ];
+
+    let atual = 0;
+
+    function atualizarCard() {
+      const digitama = digitamas[atual];
+      document.getElementById("digitama-img").src = digitama.image;
+      document.getElementById("digitama-img").alt = digitama.name;
+      document.getElementById("digitama-name").innerText = digitama.name;
+    }
+
+    function proximo() {
+      atual = (atual + 1) % digitamas.length;
+      atualizarCard();
+    }
+
+    function anterior() {
+      atual = (atual - 1 + digitamas.length) % digitamas.length;
+      atualizarCard();
+    }
+
+    function selecionarDigitama() {
+      const escolhida = digitamas[atual];
+      alert(`Você escolheu: ${escolhida.name}`);
+      // Aqui você pode enviar para o backend via fetch
+      // fetch('/api/escolher-digitama', { method: 'POST', body: JSON.stringify(escolhida) });
+    }
+
+    // Inicializa com a primeira digitama
+    atualizarCard();
+  </script>
+
+</body>
+</html>

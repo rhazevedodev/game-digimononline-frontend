@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Escolha sua Digitama</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f4f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      background: #f9f9f9;
+      padding: 10px;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card-content h2 {
+      font-size: 1.2em;
+      margin: 0 0 10px;
+      color: #444;
+    }
+
+    .baby-list {
+      font-size: 0.95em;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .baby-list li {
+      margin-bottom: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #4338ca;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Escolha sua Digitama Inicial</h1>
+  <div class="container" id="digitama-container"></div>
+
+  <script>
+    const data = {
+      "digitamas": {
+        "Digitama 1": {
+          "possibleBaby2": ["Koromon", "Tsunomon"],
+          "image": "../assets/digimons/digitama/digitama1.jpg"
+        },
+        "Digitama 2": {
+          "possibleBaby2": ["Yokomon", "Bukamon"],
+          "image": "../assets/digimons/digitama/digitama2.jpeg"
+        },
+        "Digitama 3": {
+          "possibleBaby2": ["Motimon", "Tokomon"],
+          "image": "../assets/digimons/digitama/digitama3.jpeg"
+        },
+        "Digitama 4": {
+          "possibleBaby2": ["Tokomon", "Yokomon"],
+          "image": "../assets/digimons/digitama/digitama4.jpeg"
+        },
+        "Digitama 5": {
+          "possibleBaby2": ["Koromon", "Tsunomon", "Yokomon", "Bukamon", "Motimon", "Tokomon"],
+          "image": "../assets/digimons/digitama/digitama5.jpeg"
+        }
+      }
+    };
+
+    const container = document.getElementById("digitama-container");
+
+    Object.entries(data.digitamas).forEach(([name, info]) => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <img src="${info.image}" alt="${name}">
+        <div class="card-content">
+          <h2>${name}</h2>
+          <ul class="baby-list">
+            ${info.possibleBaby2.map(b => `<li>🥚 ${b}</li>`).join("")}
+          </ul>
+          <button onclick="selecionarDigitama('${name}')">Selecionar</button>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+
+    function selecionarDigitama(nome) {
+      alert(`Digitama selecionada: ${nome}\n(Envie isso ao backend)`);
+      // Aqui você poderia chamar uma API:
+      // fetch("/api/escolher-digitama", { method: "POST", body: JSON.stringify({ digitama: nome }) })
+    }
+  </script>
+
+</body>
+</html>

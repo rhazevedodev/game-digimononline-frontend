@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
           confirmButtonText: "Beleza!"
         }).then(() => {
           // Redireciona assim que o usuário clicar em "Beleza!"
-          window.location.href = "selecaoDigimon.html";
+          window.location.href = "selecaoDigitama.html";
         });
       } else {
         Swal.fire({

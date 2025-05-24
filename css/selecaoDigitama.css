@@ -1,0 +1,100 @@
+* {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    margin-bottom: 30px;
+    color: #333;
+    text-align: center;
+  }
+
+  .carousel-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .carousel-container {
+    width: 320px;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .card img {
+    width: 100%;
+    max-height: 220px;
+    object-fit: contain;
+    background: #f9f9f9;
+    border-radius: 8px;
+  }
+
+  .card h2 {
+    font-size: 1.2em;
+    color: #444;
+    margin: 20px 0 10px;
+  }
+
+  .card button {
+    padding: 10px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+  }
+
+  .card button:hover {
+    background-color: #4338ca;
+  }
+
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 320px;
+    margin-top: 15px;
+  }
+
+  .nav-buttons button {
+    width: 48%;
+    padding: 10px;
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .nav-buttons button:hover {
+    background-color: #d4d4d4;
+  }
