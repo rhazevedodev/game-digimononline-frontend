@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const data = await response.json();
             digitamas = data.digitamas;
+            localStorage.setItem("digitamas", JSON.stringify(digitamas)); // Armazena os digitamas no localStorage
             atualizarCard();
         } catch (error) {
             console.error(error);
@@ -53,10 +54,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('btn-selecionar').addEventListener('click', selecionarDigitama);
 
-    function selecionarDigitama() {
+    async function selecionarDigitama() {
         if (digitamas.length === 0) return;
+
+        // Obtém os valores necessários para o corpo da requisição
         const escolhida = digitamas[atual];
-        alert(`Você escolheu: ${escolhida.nome}\nID: ${escolhida.idValue}\nPossíveis Bebês: ${escolhida.possibleBaby1.join(', ')}`);
+        const idDigitama = escolhida.idValue; // ID do digitama atual
+        console.log(`ID Digitama: ${idDigitama}`);
+    
+        try {
+            const response = await fetch('http://localhost:8080/digimon/selecionarDigitama', {
+                method: 'POST', // Método da requisição
+                headers: {
+                    'Content-Type': "application/json", // Define o tipo de conteúdo
+                    'Authorization': `Bearer ${token}`, // Substitua pelo token real, se necessário
+                },
+                body: JSON.stringify({ 
+                    idDigitama // Corpo da requisição com o ID do digitama
+                 }) // Corpo da requisição com o ID do digitama
+            });
+    
+            if (!response.ok) {
+                throw new Error('Erro ao selecionar o digitama');
+            }
+    
+            const data = await response.json();
+            console.log('Digitama selecionado com sucesso:', data);
+            alert('Digitama selecionado com sucesso!');
+
+            localStorage.setItem("pathDigitama", data.pathDigitama); // Armazena o caminho da imagem do digitama
+            localStorage.setItem("idDigitama", idDigitama); // Armazena o ID do digitama selecionado
+            
+            window.location.href = "chocandoDigitama.html"; // Redireciona para a próxima página
+        } catch (error) {
+            console.error(error);
+            alert('Não foi possível selecionar o digitama. Tente novamente mais tarde.');
+        }
     }
 
     // Inicializa com a primeira
