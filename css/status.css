@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #1e1e1e;
-    background-image: url('../imagens/areas/MasmorraTempestade.jpg');
+    background-image: url('../assets/areas/MasmorraTempestade.jpg');
     /* Imagem pré-definida */
     background-size: cover;
     background-position: center;

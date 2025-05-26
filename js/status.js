@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     reserva_bits: data.reservaBits,
                     reserva_diamantes: data.reservaDiamantes,
                     apelido_digimon: data.apelidoDigimon,
+                    digimon_estagio_baby1: data.digimonBaby1,
+                    digimon_estagio_baby2: data.digimonBaby2,
                     digimon_estagio_1: data.digimonRookie,
                     digimon_estagio_2: data.digimonChampion,
                     digimon_estagio_3: data.digimonUltimate,
@@ -72,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 atualizarAtributosTotais();
                 /*atualizarAtributos();*/
                 /*atualizarEstatisticas();*/
+                console.log(dataInformacoesStatus)
             })
             .catch(error => {
                 console.error('Erro ao fazer requisição:', error);
@@ -84,6 +87,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('reserva_bits').textContent =  dataInformacoesStatus.reserva_bits;
         document.getElementById('reserva_diamantes').textContent =  dataInformacoesStatus.reserva_diamantes;
         document.getElementById('apelido_digimon').textContent =  dataInformacoesStatus.apelido_digimon;
+        document.getElementById('digimon_estagio_baby1').textContent =  dataInformacoesStatus.digimon_estagio_baby1;
+        document.getElementById('digimon_estagio_baby2').textContent =  dataInformacoesStatus.digimon_estagio_baby2;
         document.getElementById('digimon_estagio_1').textContent =  dataInformacoesStatus.digimon_estagio_1;
         document.getElementById('digimon_estagio_2').textContent =  dataInformacoesStatus.digimon_estagio_2;
         document.getElementById('digimon_estagio_3').textContent =  dataInformacoesStatus.digimon_estagio_3;

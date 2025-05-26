@@ -71,8 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('continueBtn').addEventListener('click', continuar);
     function continuar() {
       // Exemplo: redirecionar para próxima etapa
-      // window.location.href = "tela-digimon.html";
-      alert("Indo para a próxima etapa...");
+      window.location.href = "continuarJornada.html";
+      //alert("Indo para a próxima etapa...");
+      localStorage.removeItem("pathDigitama"); // Limpa o localStorage após continuar
+      localStorage.removeItem("idDigitama"); // Limpa o ID do digitama selecionado
+      localStorage.removeItem("digitamaSelecionado"); // Limpa o token, se necessário
+      localStorage.removeItem("digitamas"); // Limpa o token, se necessário
     }
 
 
