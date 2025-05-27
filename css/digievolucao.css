@@ -1,0 +1,110 @@
+
+
+.evolution-card {
+    max-width: 50%;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: #ccc solid 1px;
+}
+
+.evolution-card img {
+    width: 180px;
+    height: auto;
+    border-radius: 8px; /* Adicionando bordas arredondadas à imagem */
+    margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
+}
+
+
+.current-digimon h2 {
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.evolution-progress {
+    margin-top: 20px;
+}
+
+/*
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+    */
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.button-digievoluir {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    appearance: none;
+    width: 50%;
+}
+.button-digievoluir:hover {
+    background-color: #0056b3;
+}
+
+.no-evolution {
+    text-align: center;
+    color: #ff6347; /* Escolha a cor que deseja */
+    font-size: 18px;
+    font-style: italic;
+}
+
+.no-evolution-img {
+    margin-top: 10px;
+    width: 150px; /* Tamanho da imagem */
+}
+
+.evolution-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.evolution-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.evolution-table tr:hover {
+    background-color: #727070;
+    /* Cor suave ao passar o mouse */
+    transition: background-color 0.3s;
+}
+
+.evolution-table td:nth-child(1) {
+    width: 50%; /* Define a cor de fundo apenas na primeira coluna */
+}
+
+.button-digievoluir {
+    margin-top: 10px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.evolution-table .coluna-centralizada {
+    display: table-cell; /* Garante que o elemento se comporte como célula de tabela */
+    text-align: center !important; /* Força a centralização */
+}
+
+.linha-verde {
+    background-color: #567c56; /* Verde claro */
+    font-weight: bold;
+}
