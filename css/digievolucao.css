@@ -1,5 +1,3 @@
-
-
 .evolution-card {
     max-width: 50%;
     margin: 10px auto;
@@ -13,8 +11,10 @@
 .evolution-card img {
     width: 180px;
     height: auto;
-    border-radius: 8px; /* Adicionando bordas arredondadas à imagem */
-    margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
+    border-radius: 8px;
+    /* Adicionando bordas arredondadas à imagem */
+    margin-bottom: 10px;
+    /* Espaçamento entre a imagem e o texto */
 }
 
 
@@ -55,20 +55,23 @@ button:disabled {
     appearance: none;
     width: 50%;
 }
+
 .button-digievoluir:hover {
     background-color: #0056b3;
 }
 
 .no-evolution {
     text-align: center;
-    color: #ff6347; /* Escolha a cor que deseja */
-    font-size: 18px;
+    color: #ff6347;
+    /* Escolha a cor que deseja */
+    font-size: 20px;
     font-style: italic;
 }
 
 .no-evolution-img {
     margin-top: 10px;
-    width: 150px; /* Tamanho da imagem */
+    width: 150px;
+    /* Tamanho da imagem */
 }
 
 .evolution-table {
@@ -90,7 +93,8 @@ button:disabled {
 }
 
 .evolution-table td:nth-child(1) {
-    width: 50%; /* Define a cor de fundo apenas na primeira coluna */
+    width: 50%;
+    /* Define a cor de fundo apenas na primeira coluna */
 }
 
 .button-digievoluir {
@@ -100,11 +104,14 @@ button:disabled {
 }
 
 .evolution-table .coluna-centralizada {
-    display: table-cell; /* Garante que o elemento se comporte como célula de tabela */
-    text-align: center !important; /* Força a centralização */
+    display: table-cell;
+    /* Garante que o elemento se comporte como célula de tabela */
+    text-align: center !important;
+    /* Força a centralização */
 }
 
 .linha-verde {
-    background-color: #567c56; /* Verde claro */
+    background-color: #567c56;
+    /* Verde claro */
     font-weight: bold;
 }

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../css/status.css" rel="stylesheet" type="text/css">
+    <link href="../css/novaCacada.css" rel="stylesheet" type="text/css">
+    <script defer src="../js/novaCacada.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Caçadas - Novo</title>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <!-- Topo-container com imagem e espaçamento ajustado -->
+    <div id="topo-container"></div>
+
+    <!-- Botão para abrir/fechar o menu -->
+    <button id="menu-toggle">Menu</button>
+
+    <!-- Novo menu-container com botões -->
+    <div id="menu-container">
+        <a class="menu-item" href="status.html">Status</a>
+        <a class="menu-item" href="ranking.html">Ranking</a>
+        <a class="menu-item" href="digievolucao.html">Digievolução</a>
+        <a class="menu-item" href="../expedicao.html">Expedições</a>
+        <a class="menu-item" href="../missoes.html">Missões</a>
+        <a class="menu-item" href="invasao.html">Invasão</a>
+        <a class="menu-item" href="inventario.html">Inventario</a>
+        <a class="menu-item" href="premium.html">Premium</a>
+        <a class="menu-item" href="cacadas.html">Cacadas</a>
+        <a class="menu-item" href="quests.html">Quests</a>
+        <a class="menu-item" href="passeBatalha.html">Passe de Batalha</a>
+    </div>
+
+    <div id="content-container">
+        <div id="left-container">
+            <h3 class="titulo-caixa">Informações do Digimon</h3>
+            <hr class="separador">
+            <!-- Lado esquerdo com a imagem e as barras -->
+            <!--<img src="../imagens/imageNotFound.jpg" alt="Imagem do Digimon">-->
+            <div id="image-container"></div>
+
+            <!-- Container para o nome do Digimon -->
+            <div id="digimon-name-container">
+                <span id="digimon-name">Digimon</span>
+            </div>
+            <div id="digimon-name-container">
+                <span id="digimon-name">PDigitais: 10.953
+                </span>
+            </div>
+            <div id="estrelas-container">
+                <span class="estrela" data-posicao="1">★</span>
+                <span class="estrela" data-posicao="2">★</span>
+                <span class="estrela" data-posicao="3">★</span>
+                <span class="estrela" data-posicao="4">★</span>
+                <span class="estrela" data-posicao="5">★</span>
+            </div>
+            <div id="life-bar-container">
+                <div id="life-bar">
+                    <span id="life-bar-text">0/100</span>
+                </div>
+            </div>
+            <div id="energy-bar-container">
+                <div id="energy-bar">
+                    <span id="energy-bar-text">0/100</span>
+                </div>
+            </div>
+            <div id="caixa-premium-fora">
+                <h3 class="titulo-caixa">Premium</h3>
+                <hr class="separador">
+                <div id="caixa-premium-dentro">
+                    <p style="padding: 15px; text-align:center;">Sem Premium Ativo</p>
+                </div>
+            </div>
+            <!-- Botão de Logout -->
+            <div id="logout-container">
+                <button class="button-logout" id="logoutButton" onclick="retornarSelecaoDigimon()">
+                    Seleção Digimon
+                </button>
+            </div>
+            <!-- Botão de Logout -->
+            <div id="logout-container">
+                <button class="button-logout" id="logoutButton" onclick="logout()">
+                    Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Novo container para o lado direito com a caixa de fundo -->
+
+        <div class="right-section-container">
+            <div class="right-section">
+                <h1>Missões de Caçada</h1>
+                <div class="hunt-list" id="hunt-list"></div>
+            </div>
+
+
+
+
+            <!-- Modal de Recompensa -->
+            <div class="modal-overlay" id="modal-overlay">
+                <div class="modal" id="modal">
+                    <h2>Recompensa da Caçada</h2>
+                    <div id="modal-reward-text" style="text-align: left;"></div>
+                    <button id="modal-close-btn">Fechar</button>
+                </div>
+            </div>
+        </div>
+        <script defer src="../js/validaToken.js"></script>
+        <script defer src="../js/carregarImagemLateral.js"></script>
+        <script defer src="../js/carregarBarrasVidaEnergia.js"></script>
+        <script defer src="../js/carregarPremium.js"></script>
+        <script defer src="../js/status.js"></script>
+        <script src="../js/logout.js"></script>
+        <script src="../js/botaoSelecaoDigimon.js"></script>
+        <script>
+            // Seleciona o botão de toggle e o container do menu
+            const menuToggle = document.getElementById("menu-toggle");
+            const menuContainer = document.getElementById("menu-container");
+
+            // Função para alternar a classe 'show' que controla a exibição do menu
+            menuToggle.addEventListener("click", function () {
+                menuContainer.classList.toggle("show");
+            });
+
+            // Seleciona todos os botões do menu
+            const menuItems = document.querySelectorAll(".menu-item");
+
+            // Adiciona um evento de click para cada item do menu
+            menuItems.forEach(item => {
+                item.addEventListener("click", function () {
+                    // Obtém o link da página a partir do atributo 'data-link'
+                    const pageLink = item.getAttribute("data-link");
+
+                    // Redireciona para a página desejada
+                    window.location.href = pageLink;
+                });
+            });
+        </script>
+</body>
+
+</html>

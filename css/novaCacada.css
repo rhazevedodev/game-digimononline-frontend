@@ -1,0 +1,123 @@
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hunt-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hunt-card {
+  background: #1f1f1f;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 255, 200, 0.15);
+  min-height: 120px;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.hunt-info {
+  text-align: left;
+}
+
+.hunt-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 20px;
+}
+
+.hunt-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #ccc;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  background: #00c896;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+button:hover:enabled {
+  background: #00a97a;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Div para centralizar o status na segunda coluna */
+.status-container {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+
+/* Modal estilos */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal {
+  background: #222;
+  padding: 30px 40px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  color: #fff;
+  box-shadow: 0 0 15px #00c896;
+}
+
+.modal h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal ul {
+  margin: 0 0 15px 20px;
+  padding: 0;
+}
+
+.modal p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+#modal-close-btn {
+  display: block;
+  margin: 20px auto 0 auto;
+  background: #00c896;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+#modal-close-btn:hover {
+  background: #00a97a;
+}
