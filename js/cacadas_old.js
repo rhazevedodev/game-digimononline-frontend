@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const apiResgateCacadaURL = 'http://localhost:8080/api/telaCacada/resgatarRecompensa';
     const apiIniciarCacadaURL = 'http://localhost:8080/api/telaCacada/iniciarCacada';
 
+
+    
     let dataCacadas = {};
     function carregarTelaCacadas() {
         // Dados que serão enviados no corpo da requisição

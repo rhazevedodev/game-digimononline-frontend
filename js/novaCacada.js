@@ -1,45 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const obterCacadasURL = 'http://localhost:8080/cacada/carregar/'+localStorage.getItem('idDigimon');
+    const obterCacadasURL = 'http://localhost:8080/cacada/carregar/' + localStorage.getItem('idDigimon');
+    const iniciarCacadaURL = 'http://localhost:8080/cacada/iniciarCacada';
     const jwtToken = localStorage.getItem('token');
 
     /*
-    const caçadas = [
-        {
-            id: 1, nome: "Floresta Sombria", tier: "S", poder: 3200,
-            recompensa: {
-                itens: [
-                    { nome: "Item Raro", quantidade: 2 },
-                    { nome: "Poção Curativa", quantidade: 5 }
-                ],
-                exp: 500,
-                bits: 1200
-            }
-        },
-        {
-            id: 2, nome: "Ruínas Digitais", tier: "A", poder: 2800,
-            recompensa: {
-                itens: [
-                    { nome: "Fragmento Digital", quantidade: 1 }
-                ],
-                exp: 300,
-                bits: 800
-            }
-        },
-        {
-            id: 3, nome: "Caverna Subterrânea", tier: "B", poder: 2100,
-            recompensa: {
-                itens: [
-                    { nome: "Poção", quantidade: 3 }
-                ],
-                exp: 150,
-                bits: 400
-            }
-        }
-    ];
-
     const duracaoCaçada = 1; // 10 minutos em segundos
     */
+
+    async function fetchIniciarCacada(url, cacada) {
+        // Exemplo de lógica ao iniciar a caçada
+        console.log("Iniciando caçada...");
+        console.log("Caçada:", cacada);
+
+        const body = {
+            idDigimon: localStorage.getItem('idDigimon'),
+            cacadaSelecionada: cacada // Usa o objeto cacada diretamente
+        };
+
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    'Authorization': `Bearer ${jwtToken}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
+
+            if (response.status === 200) {
+                console.log("Caçada iniciada com sucesso!");
+            } else {
+                console.log("Entrou na exceção");
+                throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
+            }
+        } catch (error) {
+            console.error("Erro ao enviar a caçada:", error);
+            throw error;
+        }
+    }
 
 
     let dataCacadas = {};
@@ -49,10 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${jwtToken}` 
+                'Authorization': `Bearer ${jwtToken}`
             }
         };
-        fetch(obterCacadasURL,requestOptions)
+        fetch(obterCacadasURL, requestOptions)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Erro na requisição: ${response.statusText}`);
@@ -98,18 +97,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const btn = document.createElement("button");
         btn.textContent = "Iniciar Caçada";
-        btn.onclick = () => iniciarCaçada(card, caçada);
+
+        // Adicionando uma ID ao botão
+        btn.id = "btn-iniciar-cacada";
+
+        // Adicionando uma ou mais classes ao botão
+        btn.classList.add("btn", "btn-iniciar");
+
+        btn.onclick = () => iniciarCaçada(card, caçada, false);
 
         card.appendChild(info);
         card.appendChild(btn);
 
+        if (caçada.cacadaAtiva && typeof caçada.cacadaAtiva.segundosRestantes === "number") {
+            // Se a caçada já está ativa, iniciar o temporizador
+            let cacadaAtiva = true;
+            iniciarCaçada(card, caçada, cacadaAtiva);
+        }
+
         return card;
     }
 
-    function iniciarCaçada(card, caçada) {
-        bloquearBotoes(true);
+    function iniciarCaçada(card, caçada, cacadaAtiva) {
+        //bloquearBotoes(true);
 
-        let tempoRestante = duracaoCaçada;
+        let tempoRestante = 0;
+        if (!cacadaAtiva) {
+            fetchIniciarCacada(iniciarCacadaURL, caçada)
+            tempoRestante = caçada.duracao_segundos;
+        } else {
+            // Se a caçada já está ativa, usar o tempo restante da caçada ativa
+            tempoRestante = caçada.cacadaAtiva.segundosRestantes;
+            console.log("Tempo restante da caçada ativa:", tempoRestante);
+        }
         const fim = new Date(Date.now() + tempoRestante * 1000);
 
         card.innerHTML = `
@@ -195,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderizarCacadas() {
         const lista = document.getElementById("hunt-list");
         lista.innerHTML = ""; // Limpa caçadas antigas, se houver
-    
+
         dataCacadas.forEach(cacada => {
             const card = criarCardCaçada(cacada);
             lista.appendChild(card);
