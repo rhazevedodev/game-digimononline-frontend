@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    const obterCacadasURL = 'http://localhost:8080/cacada/carregar/'+localStorage.getItem('idDigimon');
+    const jwtToken = localStorage.getItem('token');
+
+    /*
     const caçadas = [
         {
             id: 1, nome: "Floresta Sombria", tier: "S", poder: 3200,
@@ -34,6 +39,35 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const duracaoCaçada = 1; // 10 minutos em segundos
+    */
+
+
+    let dataCacadas = {};
+    function fetchCacadas() {
+
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwtToken}` 
+            }
+        };
+        fetch(obterCacadasURL,requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro na requisição: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                dataCacadas = data; // Agora sim, data é o array de caçadas
+                console.log('Caçadas carregadas com sucesso:', dataCacadas);
+                renderizarCacadas(); // renderiza só depois de carregar
+            })
+            .catch(error => {
+                console.error('Erro ao carregar os Digimons:', error);
+            });
+    }
 
     function formatarTempo(segundos) {
         const min = String(Math.floor(segundos / 60)).padStart(2, '0');
@@ -59,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         info.className = "hunt-info";
         info.innerHTML = `
           <h3>${caçada.nome}</h3>
-          <p>Tier: ${caçada.tier} | Poder necessário: ${caçada.poder}</p>
+          <p>Tier: ${caçada.tier} | Poder necessário: ${caçada.requisitos.poder_total}</p>
         `;
 
         const btn = document.createElement("button");
@@ -81,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.innerHTML = `
           <div class="hunt-info">
             <h3>${caçada.nome}</h3>
-            <p>Tier: ${caçada.tier} | Poder necessário: ${caçada.poder}</p>
+            <p>Tier: ${caçada.tier} | Poder necessário: ${caçada.requisitos.poder_total}</p>
           </div>
           <div class="status-container">
             <p>Tempo restante: ${formatarTempo(tempoRestante)}</p>
@@ -156,10 +190,24 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    fetchCacadas();
+
+    function renderizarCacadas() {
+        const lista = document.getElementById("hunt-list");
+        lista.innerHTML = ""; // Limpa caçadas antigas, se houver
+    
+        dataCacadas.forEach(cacada => {
+            const card = criarCardCaçada(cacada);
+            lista.appendChild(card);
+        });
+    }
+
     // Renderizar todas as caçadas
+    /*
     const lista = document.getElementById("hunt-list");
-    caçadas.forEach(caçada => {
-        const card = criarCardCaçada(caçada);
+    dataCacadas.forEach(dataCacada => {
+        const card = criarCardCaçada(dataCacada);
         lista.appendChild(card);
     });
+    */
 });
