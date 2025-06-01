@@ -7,7 +7,7 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -63,9 +63,10 @@ button:disabled {
 .status-container {
   flex-grow: 1;
   display: flex;
-  align-items: center;
+  flex-direction: column; /* Para empilhar texto e botão */
+  align-items: flex-end;  /* Alinha à direita */
   justify-content: center;
-  text-align: center;
+  text-align: right;
   gap: 10px;
 }
 

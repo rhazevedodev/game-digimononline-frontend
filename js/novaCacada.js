@@ -187,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <h3>${caçada.nome}</h3>
           </div>
           <div class="status-container">
-            <p>Caçada concluída!</p>
             <button>Resgatar Recompensa</button>
           </div>
         `;
@@ -239,6 +238,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const novoCard = criarCardCaçada(caçada);
             card.replaceWith(novoCard);
             bloquearBotoes(false);
+            location.reload(); // Adiciona o comando para recarregar a página
+
         };
     }
 
