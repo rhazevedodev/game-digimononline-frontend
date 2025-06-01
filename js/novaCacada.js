@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const obterCacadasURL = 'http://localhost:8080/cacada/carregar/' + localStorage.getItem('idDigimon');
     const iniciarCacadaURL = 'http://localhost:8080/cacada/iniciarCacada';
+    const finalizarCacadaURL = 'http://localhost:8080/cacada/resgatarRecompensa';
     const jwtToken = localStorage.getItem('token');
 
     /*
@@ -66,6 +67,28 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => {
                 console.error('Erro ao carregar os Digimons:', error);
             });
+    }
+
+    async function fetchRecompensaCacada(caçada) {
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwtToken}`
+            }
+        };
+        try {
+            const response = await fetch(finalizarCacadaURL + '/' + caçada.id + '/' + localStorage.getItem('idDigimon'), requestOptions);
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.statusText}`);
+            }
+            const data = await response.json();
+            console.log('Recompensa da caçada resgatada com sucesso:', data);
+            return data;  // <-- Retorna os dados da recompensa
+        } catch (error) {
+            console.error('Erro ao resgatar recompensa:', error);
+            throw error;
+        }
     }
 
     function formatarTempo(segundos) {
@@ -173,30 +196,39 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.onclick = () => abrirModalRecompensa(caçada, card);
     }
 
-    function abrirModalRecompensa(caçada, card) {
+    async function abrirModalRecompensa(caçada, card) {
         const modalOverlay = document.getElementById("modal-overlay");
         const textoRecompensa = document.getElementById("modal-reward-text");
 
-        let html = "";
+        try {
+            const recompensa = await fetchRecompensaCacada(caçada); // agora retorna a recompensa
+            if (!recompensa) {
+                textoRecompensa.innerHTML = "<p>Erro ao obter recompensa.</p>";
+            } else {
+                let html = "";
 
-        if (caçada.recompensa.itens && caçada.recompensa.itens.length > 0) {
-            html += "<strong>Itens:</strong><ul>";
-            caçada.recompensa.itens.forEach(item => {
-                html += `<li>${item.nome} x${item.quantidade}</li>`;
-            });
-            html += "</ul>";
+                if (recompensa.itens && recompensa.itens.length > 0) {
+                    html += "<strong>Itens:</strong><ul>";
+                    recompensa.itens.forEach(item => {
+                        html += `<li>${item.nome} x${item.quantidade}</li>`;
+                    });
+                    html += "</ul>";
+                }
+
+                if (recompensa.exp) {
+                    html += `<p><strong>EXP:</strong> +${recompensa.exp}</p>`;
+                }
+
+                if (recompensa.bits) {
+                    html += `<p><strong>Bits:</strong> +${recompensa.bits}</p>`;
+                }
+
+                textoRecompensa.innerHTML = html;
+                textoRecompensa.style.textAlign = "left";
+            }
+        } catch (error) {
+            textoRecompensa.innerHTML = "<p>Erro ao processar a recompensa.</p>";
         }
-
-        if (caçada.recompensa.exp) {
-            html += `<p><strong>EXP:</strong> +${caçada.recompensa.exp}</p>`;
-        }
-
-        if (caçada.recompensa.bits) {
-            html += `<p><strong>Bits:</strong> +${caçada.recompensa.bits}</p>`;
-        }
-
-        textoRecompensa.innerHTML = html;
-        textoRecompensa.style.textAlign = "left";
 
         modalOverlay.style.display = "flex";
 
